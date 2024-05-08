@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row align-items-center justify-content-center h-100">
+        <div class="col-md-8">
+            <mat-card>
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <img src="https://images.pexels.com/photos/1462725/pexels-photo-1462725.jpeg"
+                                class="img-fluid">
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <form [formGroup]="loginForm" (submit)="onLogin()">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Usuario</mat-label>
+                                    <input type="text" formControlName="username" matInput>
+                                    <mat-error>
+                                        {{baseForm.getErrorMessage(loginForm.get('username'))}}
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Contraseña</mat-label>
+                                    <input [type]="hide ?'password':'text'" formControlName="password" matInput>
+                                    <button type="button" mat-icon-button matSuffix (click)="hide=!hide">
+                                        <mat-icon>{{hide ? 'visibility_off':'visibility'}}</mat-icon>
+                                    </button>
+                                    <mat-error>
+                                        {{baseForm.getErrorMessage(loginForm.get('password'))}}
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <button type="submit" mat-raised-button color="primary" class="full-width">Acceder</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

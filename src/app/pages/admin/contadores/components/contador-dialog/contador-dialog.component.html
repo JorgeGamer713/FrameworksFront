@@ -1,0 +1,66 @@
+<h3 class="m-3">{{ data?.title }}</h3>
+<br>
+<mat-dialog-content>
+    <form [formGroup]="contadorForm" (submit)="onSave()">
+        <!-- Nombre -->
+        <mat-form-field class="full-width mb-3" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input type="text" formControlName="nombre" matInput>
+            <mat-error>
+                {{baseForm.getErrorMessage(contadorForm.get('nombre'))}}
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Apellidos -->
+
+        <!-- Dirección -->
+        <mat-form-field class="full-width mb-3" appearance="outline">
+            <mat-label>Dirección</mat-label>
+            <input type="text" formControlName="direccion" matInput>
+            <mat-error>
+                {{baseForm.getErrorMessage(contadorForm.get('direccion'))}}
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Tipo de Contratación -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Tipo de Contratación</mat-label>
+            <mat-select formControlName="tipoContratacion">
+                <mat-option *ngFor="let tipoContratacion of tiposdeContratacion" [value]="tipoContratacion.id">
+                    {{ tipoContratacion.nombre }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+
+        <!-- Fecha de Registro -->
+        <mat-form-field class="full-width mb-3" appearance="outline">
+            <mat-label>Fecha de Registro</mat-label>
+            <input type="date" formControlName="fechaRegistro" matInput>
+            <mat-error>
+                {{baseForm.getErrorMessage(contadorForm.get('fechaRegistro'))}}
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Acciones -->
+
+        <div align="center">
+            <button type="submit" class="me-2" mat-raised-button color="primary" [disabled]="this.contadorForm.invalid">
+                <mat-icon>save</mat-icon>
+                {{tittleButton}}
+            </button>
+            <button mat-raised-button color="warn" (click)="onClear()">
+                <mat-icon>clear</mat-icon>
+                Limpiar
+            </button>
+        </div>
+
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>
+        <mat-icon>Close</mat-icon>
+        Cerrar
+    </button>
+</mat-dialog-actions>
